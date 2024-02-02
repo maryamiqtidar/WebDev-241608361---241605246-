@@ -1,0 +1,20 @@
+.stone-img {
+    width: 100%; /* Make images responsive */
+    border-radius: 8px; /* Add border-radius for rounded corners */
+    margin-bottom: 10px; /* Adjust as needed */
+  }
+  
+  .stone-img:hover {
+    transform: scale(1.05); /* Example: increase image size on hover */
+  }
+  
+  .stone-products h2 {
+    font-size: 1.5rem;
+    margin-top: 100px;
+  }
+  
+  .stone-products p {
+    font-size: 1rem;
+    color: #666;
+  }
+  
