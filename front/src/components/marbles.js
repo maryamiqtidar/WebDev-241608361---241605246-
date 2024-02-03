@@ -1,9 +1,7 @@
 // Marbles.js
-
-
-import axios from 'axios';
 import React, { useState } from 'react';
 import './stone.css'; // Import CSS file for styling
+import axios from 'axios';
 
 const marbleImages = [
   {
@@ -57,8 +55,6 @@ const handleSubmitOrder = (e) => {
     console.error('Error submitting order:', error);
   });
 };
-
-
   return (
     <div className="left-container">
       <div className="row">
@@ -76,7 +72,7 @@ const handleSubmitOrder = (e) => {
             <span className="close" onClick={() => setSelectedImage(null)}>&times;</span>
             <div className="order-info">
               <h2>Order {selectedImage.title}</h2>
-              <form onSubmit={handleSubmitOrder}>
+             <form method="post" onSubmit={handleSubmitOrder}>
   <div className="form-group">
     <label>Name:</label>
     <input type="text" name="name" className="form-control" placeholder="Enter your name" required />
@@ -99,7 +95,6 @@ const handleSubmitOrder = (e) => {
   </div>
   <button type="submit" className="btn btn-primary">Send Order</button>
 </form>
-
             </div>
             <div className="order-image">
               <img src={selectedImage.image} alt={selectedImage.title} />

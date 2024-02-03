@@ -1,84 +1,129 @@
-import React from 'react';
+import React, { useState } from 'react';
+import './stone.css'; 
+import axios from 'axios';
 
-const granite = [
+const graniteImages = [
   {
     image: 'baltic_brown.jpg',
     title: 'Boltic Brown',
-    description: 'Description for Stone Product 1.',
   },
   {
     image: 'blackgalaxy.jpg',
     title: 'Black Galaxy',
-    description: 'Description for Stone Product 2.',
+
   },
   {
     image: 'blackgranite.jpg',
     title: 'Black Granite',
-    description: 'Description for Stone Product 3.',
+
   },
   {
     image: 'bluepearl.jpg',
     title: 'Blue Pearl',
-    description: 'Description for Stone Product 4.',
+
   },
   {
     image: 'brownpearl.jpg',
     title: 'Brown Pearl',
-    description: 'Description for Stone Product 5.',
+
   },
   {
     image: 'camelbrown.jpg',
     title: 'Camel Brown',
-    description: 'Description for Stone Product 6.',
+   
   },
   {
     image: 'lavendergrey.jpg',
     title: 'Lavender Grey',
-    description: 'Description for Stone Product 7.',
   },
   {
     image: 'tropicalgrey.jpg',
     title: 'Tropical Grey',
-    description: 'Description for Stone Product 8.',
   },
-  // Add more stone products as needed
+  {
+    image: 'orange.jpg',
+    title: 'Orange',
+  },
 ];
 
-function Granite() {
+function Granites() {
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const handleImageClick = (image) => {
+    setSelectedImage(image);
+  };
+
+const handleSubmitOrder = (e) => {
+  e.preventDefault();
+  axios.post('http://127.0.0.1:8000/orders/', {
+    name: e.target.elements.name.value,
+    email: e.target.elements.email.value,
+    mobile_number: e.target.elements.mobile_number.value,
+    required_size: e.target.elements.required_size.value,
+    quantity: e.target.elements.quantity.value
+  })
+  .then(response => {
+    console.log('Order submitted successfully:', response.data);
+    // Clear selectedImage after submitting order
+    setSelectedImage(null);
+  })
+  .catch(error => {
+    console.error('Error submitting order:', error);
+  });
+};
   return (
-    <section className="stone-products">
-      <div className="container">
-        <div className="row">
-          {/* Render the first row of images */}
-          {granite.slice(0, 4).map((product, index) => (
-            <div key={index} className="col-md-3 mb-4">
-              <img src={product.image} alt={product.title} style={{
-                width: '20%', // Make images responsive
-                borderRadius: '8px', // Add border-radius for rounded corners
-                marginBottom: '10px', // Adjust as needed
-              }} />
-              <h2 style={{ fontSize: '1.5rem', marginTop: '10px' }}>{product.title}</h2>
-              <p style={{ fontSize: '1rem', color: '#666' }}>{product.description}</p>
-            </div>
-          ))}
-        </div>
-        <div className="row">
-          {/* Render the second row of images */}
-          {granite.slice(4, 8).map((product, index) => (
-            <div key={index} className="col-md-3 mb-4">
-              <img src={product.image} alt={product.title} style={{
-                width: '20%', // Make images responsive
-                borderRadius: '8px', // Add border-radius for rounded corners
-                marginBottom: '10px', // Adjust as needed
-              }} />
-              <h2 style={{ fontSize: '1.5rem', marginTop: '10px' }}>{product.title}</h2>
-              <p style={{ fontSize: '1rem', color: '#666' }}>{product.description}</p>
-            </div>
-          ))}
-        </div>
+    <div className="right-container">
+       <h1 style={{ marginTop: '60px' }}>Granites</h1>
+      <div className="row">
+        {graniteImages.map((product, index) => (
+          <div key={index} className="col-md-4 mb-5" onClick={() => handleImageClick(product)}>
+            <img src={product.image} alt={product.title} className="stone-img" />
+            <h5>{product.title}</h5>
+          </div>
+        ))}
       </div>
-    </section>
+      {/* Modal for ordering */}
+      {selectedImage && (
+        <div className="modal" onClick={() => setSelectedImage(null)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <span className="close" onClick={() => setSelectedImage(null)}>&times;</span>
+            <div className="order-info">
+              <h2>Order {selectedImage.title}</h2>
+<form method="post" onSubmit={handleSubmitOrder}>
+  <div className="form-group">
+    <label>Name:</label>
+    <input type="text" name="name" className="form-control" placeholder="Enter your name" required />
+  </div>
+  <div className="form-group">
+    <label>Email:</label>
+    <input type="email" name="email" className="form-control" placeholder="Enter your email" required />
+  </div>
+  <div className="form-group">
+    <label>Mobile Number:</label>
+    <input type="tel" name="mobile_number" className="form-control" placeholder="Enter your mobile number" required />
+  </div>
+  <div className="form-group">
+    <label>Required Size:</label>
+    <input type="text" name="required_size" className="form-control" placeholder="Enter required size" required />
+  </div>
+  <div className="form-group">
+    <label>Quantity:</label>
+    <input type="number" name="quantity" className="form-control" placeholder="Enter quantity" required />
+  </div>
+  <button type="submit" className="btn btn-primary">Send Order</button>
+</form>
+            </div>
+            <div className="order-image">
+              <img src={selectedImage.image} alt={selectedImage.title} />
+            </div>
+          </div>
+        </div>
+      )}
+      
+    </div>
+    
   );
+  
 }
 
-export default Granite;
+export default Granites;

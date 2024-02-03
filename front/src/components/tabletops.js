@@ -1,7 +1,7 @@
 // TableTops.js
-import axios from 'axios';
 import React, { useState } from 'react';
 import './stone.css'; // Import CSS file for styling
+import axios from 'axios';
 
 const tabletopImages = [
   {
@@ -33,6 +33,7 @@ const tabletopImages = [
     title: 'Table Top 6',
 
   },
+ 
 ];
 
 function TableTops() {
@@ -41,8 +42,6 @@ function TableTops() {
   const handleImageClick = (image) => {
     setSelectedImage(image);
   };
-
-
 
 const handleSubmitOrder = (e) => {
   e.preventDefault();
@@ -63,7 +62,6 @@ const handleSubmitOrder = (e) => {
   });
 };
 
-
   return (
     <div className="left-container">
       <div className="row">
@@ -81,29 +79,29 @@ const handleSubmitOrder = (e) => {
             <span className="close" onClick={() => setSelectedImage(null)}>&times;</span>
             <div className="order-info">
               <h2>Order {selectedImage.title}</h2>
-              <form onSubmit={handleSubmitOrder}>
-                <div className="form-group">
-                  <label>Name:</label>
-                  <input type="text" className="form-control" placeholder="Enter your name" required />
-                </div>
-                <div className="form-group">
-                  <label>Email:</label>
-                  <input type="email" className="form-control" placeholder="Enter your email" required />
-                </div>
-                <div className="form-group">
-                  <label>Mobile Number:</label>
-                  <input type="tel" className="form-control" placeholder="Enter your mobile number" required />
-                </div>
-                <div className="form-group">
-                  <label>Required Size:</label>
-                  <input type="text" className="form-control" placeholder="Enter required size" required />
-                </div>
-                <div className="form-group">
-                  <label>Quantity:</label>
-                  <input type="number" className="form-control" placeholder="Enter quantity" required />
-                </div>
-                <button type="submit" className="btn btn-primary">Send Email</button>
-              </form>
+<form method="post" onSubmit={handleSubmitOrder}>
+  <div className="form-group">
+    <label>Name:</label>
+    <input type="text" name="name" className="form-control" placeholder="Enter your name" required />
+  </div>
+  <div className="form-group">
+    <label>Email:</label>
+    <input type="email" name="email" className="form-control" placeholder="Enter your email" required />
+  </div>
+  <div className="form-group">
+    <label>Mobile Number:</label>
+    <input type="tel" name="mobile_number" className="form-control" placeholder="Enter your mobile number" required />
+  </div>
+  <div className="form-group">
+    <label>Required Size:</label>
+    <input type="text" name="required_size" className="form-control" placeholder="Enter required size" required />
+  </div>
+  <div className="form-group">
+    <label>Quantity:</label>
+    <input type="number" name="quantity" className="form-control" placeholder="Enter quantity" required />
+  </div>
+  <button type="submit" className="btn btn-primary">Send Order</button>
+</form>
             </div>
             <div className="order-image">
               <img src={selectedImage.image} alt={selectedImage.title} />

@@ -1,7 +1,7 @@
 // Granite.js
 import React, { useState } from 'react';
-import axios from 'axios';
 import './stone.css'; // Import CSS file for styling
+import axios from 'axios';
 
 const graniteImages = [
   {
@@ -35,7 +35,7 @@ const graniteImages = [
   },
 ];
 
-function Bowls() {
+function Granites() {
   const [selectedImage, setSelectedImage] = useState(null);
 
   const handleImageClick = (image) => {
@@ -60,7 +60,6 @@ const handleSubmitOrder = (e) => {
     console.error('Error submitting order:', error);
   });
 };
-
   return (
     <div className="right-container">
       <div className="row">
@@ -78,7 +77,7 @@ const handleSubmitOrder = (e) => {
             <span className="close" onClick={() => setSelectedImage(null)}>&times;</span>
             <div className="order-info">
               <h2>Order {selectedImage.title}</h2>
-<form method="post" onSubmit={handleSubmitOrder}>
+             <form method="post" onSubmit={handleSubmitOrder}>
   <div className="form-group">
     <label>Name:</label>
     <input type="text" name="name" className="form-control" placeholder="Enter your name" required />
@@ -101,7 +100,6 @@ const handleSubmitOrder = (e) => {
   </div>
   <button type="submit" className="btn btn-primary">Send Order</button>
 </form>
-
             </div>
             <div className="order-image">
               <img src={selectedImage.image} alt={selectedImage.title} />
@@ -113,4 +111,4 @@ const handleSubmitOrder = (e) => {
   );
 }
 
-export default Bowls;
+export default Granites;

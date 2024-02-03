@@ -151,7 +151,8 @@ export default function Main() {
   </div>
 
   <div className="black-footer">
-        <p>© 2024 Stone Company. All Rights Reserved.</p>
+        <p> Contact: +92 3357408090</p>
+        <p>  © 2024 Stone Company. All Rights Reserved.</p>
       </div>
 </div>
 

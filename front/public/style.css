@@ -2,11 +2,23 @@
     display: flex;
     align-items: center;
     background-color: #cfd0cf; 
-    height: 20px;
+    height: 60px;
     padding: 30px 25px;
     }
-    
 
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    
+    .navbar-link {
+      text-decoration: none;
+      color: black;
+    }
+    
     nav > h3, nav > h4 {
         margin: 0;
     }
@@ -97,10 +109,6 @@
   text-align: center; 
 }
 
-.dropdown.open .dropdown-content {
-  display: block;
-}
-
 .stone-products {
   margin-top: 20px; /* Adjust as needed */
 }
@@ -108,11 +116,7 @@
 .stone-img {
   width: 100%; /* Make images responsive */
   border-radius: 8px; /* Add border-radius for rounded corners */
-  margin-bottom: 10px; /* Adjust as needed */
-  
 }
-  
-
 .right-container {
   margin-right: 100px;
 }
@@ -120,5 +124,3 @@
 .left-container{
   margin-left: 100px;
 }
-
-

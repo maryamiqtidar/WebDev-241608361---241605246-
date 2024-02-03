@@ -1,0 +1,41 @@
+/* granite.css */
+
+.stone-products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.product-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    /* Add a transition for smooth hover effect */
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    /* Add a slight upward translation on hover */
+}
+
+.stone-img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.product-details {
+    margin-top: 10px;
+}
+
+.stone-title {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.stone-description {
+    font-size: 1rem;
+    color: #666;
+}
